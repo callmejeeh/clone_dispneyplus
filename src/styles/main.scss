@@ -2,6 +2,10 @@
 @use 'hero';
 @use 'show';
 @use 'plans';
+@use 'devices';
+@use 'faq';
+@use 'footer';
+@use 'header';
 
 @font-face {
     font-family: Avenir;
@@ -20,6 +24,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Avenir, sans-serif;
+    list-style: none;
 }
 
 
@@ -42,26 +47,52 @@ body {
 
 .text--big {
     @include text(18px);
+
+    @media (max-width: 768px) {
+        @include text(15px);
+    }
 }
 
 .text {
     @include text;
+
+    @media (max-width: 768px) {
+        @include text(14px);
+    }
+
+
 }
 
 .text--small {
     @include text (12px);
+
+    @media (max-width: 768px) {
+        @include text(11px);
+    }
 }
 
 .title--big {
     @include title(44px);
+
+    @media (max-width: 768px) {
+        @include title(26px);
+    }
 }
 
 .title {
     @include title;
+
+    @media (max-width: 768px) {
+        @include title(24px);
+    }
 }
 
 .title--small {
     @include title(28px);
+
+    @media (max-width: 768px) {
+        @include title(22px);
+    }
 }
 
 .link-text {
@@ -76,9 +107,83 @@ body {
         height: 60px;
         font-size: 18px;
         color: variaveis.$corTextoSecundario;
-        background-color: #6421ff;
+        background-color: variaveis.$corBotaoPrimario;
+        border: 1 px solid variaveis.$corBotaoPrimario;
         text-transform: uppercase;
         border-radius: 4px;
-        margin-top: 2vw;
-        margin-bottom: 8px;
+        text-decoration: none;
+        padding: 8px 14px;
+        cursor: pointer;
+        letter-spacing: 1px;
+
+
+        &:hover {
+            background-color: lighten(variaveis.$corBotaoPrimario, 3%);
+        }
+
+        &--secondary {
+            background-color: variaveis.$CorBotaoSecundario;
+            border-color:variaveis.$CorBotaoSecundario;
+            &:hover{
+                background-color: lighten(variaveis.$CorBotaoSecundario, 3%);
+            }
+        }
+
+        &--dark {
+            background-color: variaveis.$CorBotaoDark;
+            border-color: variaveis.$corTextoSecundario;
+
+            &:hover {
+                background-color: variaveis.$corTextoSecundario;
+                color: variaveis.$corFundo;
+            }
+        }
+
+
+
+}
+
+.image-text-section {
+    padding: 5.6vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    @media (max-width: 768px) {
+        display: block;
+    }
+
+    &__text-container {
+        padding: 0 2vw;
+
+        h2 {
+            margin-bottom: 24px;
+        }
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    &--image-full-width {
+        display: block;
+        position: relative;
+        img {
+            width: 100%;
+        }
+        &__text-container {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: calc(50% - 6vw);
+
+            @media (max-width: 768px) {
+                position: relative;
+                width: 100%;
+            }
+        }
+    }
 }
