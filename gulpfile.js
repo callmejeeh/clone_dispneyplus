@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const sass = require ('gulp-sass')(require('sass'));
 const imagemin = require('gulp-imagemin');
-const uglify = require('gulp-iglify');
+const uglify = require('gulp-uglify');
 
 function styles( ){
     return gulp.src('./src/styles/*.scss')
@@ -21,7 +21,7 @@ function scripts ( ){
     .pipe(gulp.dest('./dist/js'))
 }
 
-exports.default = gulp.parallel(styles,images, scripts);
+exports.default = gulp.parallel(styles,images,scripts);
 
 exports.watch = function () {
     gulp.watch('./src/styles/*.scss', gulp.parallel(styles))
